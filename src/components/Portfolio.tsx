@@ -3,6 +3,7 @@ import { MapPin, Download, Briefcase, FolderOpen, Code2, GraduationCap, User, Su
 import ReadableBlock from './ReadableBlock';
 import TimelineModal from './TimelineModal';
 import ChatWidget from './ChatWidget';
+import FloatingFish from './FloatingFish';
 import profileImage from '../assets/id.png';
 
 export default function Portfolio() {
@@ -140,8 +141,9 @@ export default function Portfolio() {
           </button>
         </div>
 
-        <header className="flex flex-col md:flex-row items-center md:items-stretch gap-8 pb-6 mt-12 md:mt-0">
-          <div className="w-40 h-40 overflow-hidden shrink-0 shadow-sm rounded-lg bg-zinc-200 dark:bg-zinc-800">
+        <header className="flex flex-col md:flex-row items-center md:items-stretch gap-8 pb-6 mt-12 md:mt-0 relative z-10">
+          
+          <div className="w-40 h-40 overflow-hidden shrink-0 shadow-sm rounded-lg bg-zinc-200 dark:bg-zinc-800 relative z-20">
             <img 
               src={profileImage} 
               alt="Profile" 
@@ -149,13 +151,19 @@ export default function Portfolio() {
             />
           </div>
           
-          <div className="flex flex-col flex-1 text-center md:text-left justify-center">
-            <div>
-              <h1 className="text-3xl md:text-4xl text-zinc-900 dark:text-zinc-100 font-normal tracking-wide mb-3">
+          <div className="flex flex-col justify-between flex-1 text-center md:text-left h-auto md:h-40 relative">
+            
+            {/* The animation container now stretches across the remaining empty space */}
+            <div className="hidden md:block absolute left-[12rem] right-0 bottom-0 h-full pointer-events-none overflow-hidden z-0">
+              <FloatingFish />
+            </div>
+
+            <div className="relative z-10 pt-1">
+              <h1 className="text-3xl md:text-4xl text-zinc-900 dark:text-zinc-100 font-normal tracking-wide mb-2">
                 Kate Aikeen Fabiani
               </h1>
               
-              <div className="flex flex-col md:flex-row items-center md:items-start gap-4 text-sm text-zinc-500 dark:text-zinc-400 font-sans mb-3">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-4 text-sm text-zinc-500 dark:text-zinc-400 font-sans mb-2">
                 <div className="flex items-center justify-center md:justify-start gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 font-sans">
                     <MapPin size={14} />
                     <span>Caloocan City, Metro Manila</span>
@@ -167,9 +175,7 @@ export default function Portfolio() {
               </p>
             </div>
             
-            <div className="flex flex-wrap justify-center md:justify-start gap-3 text-sm mt-4 md:mt-0 font-sans">
-              
-              {/* CV Button */}
+            <div className="flex flex-wrap justify-center md:justify-start gap-3 text-sm font-sans relative z-10 mt-4 md:mt-0 pb-1">
               <a 
                 href="https://drive.google.com/file/d/1SqyJ1Y0lMrb0ylo_0LLyBOQDq-V2BMkl/view?usp=sharing" 
                 target="_blank" 
@@ -179,8 +185,6 @@ export default function Portfolio() {
                 <Download size={14} />
                 Download CV
               </a>
-              
-              {/* Github Button */}
               <a 
                 href="https://github.com/aikeen8" 
                 target="_blank" 
@@ -190,10 +194,8 @@ export default function Portfolio() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 Github
               </a>
-              
-              {/* LinkedIn Button */}
               <a 
-                href="https://www.linkedin.com/in/katefabiani" 
+                href="https://www.linkedin.com/in/YOUR-PROFILE-HERE" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="flex items-center gap-2 px-4 py-2 transition-all hover:-translate-y-0.5 shadow-sm bg-white dark:bg-[#111111] text-zinc-900 dark:text-zinc-100 rounded-md hover:bg-zinc-50 dark:hover:bg-[#1a1a1a] border border-zinc-200 dark:border-zinc-800"
@@ -201,7 +203,6 @@ export default function Portfolio() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
                 LinkedIn
               </a>
-              
             </div>
           </div>
         </header>
@@ -341,7 +342,7 @@ export default function Portfolio() {
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl text-zinc-900 dark:text-zinc-100 flex items-center gap-3 font-semibold">
                   <FolderOpen size={18} className="text-zinc-400 dark:text-zinc-500" />
-                  Projects
+                  Selected Projects
                 </h2>
                 <button 
                   onClick={() => setActiveModal('projects')} 

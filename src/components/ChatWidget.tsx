@@ -11,7 +11,6 @@ export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<'chat' | 'email'>('chat');
   
-  // Chat state
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -23,7 +22,6 @@ export default function ChatWidget() {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Email state
   const [emailSubject, setEmailSubject] = useState('');
   const [emailBody, setEmailBody] = useState('');
 
@@ -37,7 +35,7 @@ export default function ChatWidget() {
     }
   }, [messages, isTyping, mode]);
 
-  const handleSendChat = () => {
+  const handleSendChat = async () => {
     if (!inputValue.trim()) return;
 
     const newUserMessage: Message = {
@@ -50,15 +48,34 @@ export default function ChatWidget() {
     setInputValue('');
     setIsTyping(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          message: newUserMessage.text,
+          history: messages 
+        })
+      });
+
+      const data = await response.json();
+
       const newAiMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'ai',
-        text: "i am currently running in demo mode on the frontend! to make me fully functional, connect this chat component to a backend api using gemini or openai, and feed it kate's resume."
+        text: data.reply || "sorry, the connection timed out."
       };
+      
       setMessages(prev => [...prev, newAiMessage]);
+    } catch {
+      setMessages(prev => [...prev, { 
+        id: Date.now().toString(), 
+        role: 'ai', 
+        text: "an error occurred while trying to connect." 
+      }]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -68,8 +85,7 @@ export default function ChatWidget() {
   };
 
   const handleSendEmail = () => {
-    // Change this to your actual email address
-    const yourEmail = "your.email@gmail.com";
+    const yourEmail = "kateaikeen.fabiani@gmail.com";
     window.location.href = `mailto:${yourEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
   };
 
@@ -78,7 +94,6 @@ export default function ChatWidget() {
       {isOpen && (
         <div className="absolute bottom-16 right-0 w-80 sm:w-96 h-[32rem] bg-[#f4f4f5] dark:bg-[#111111] border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-300">
           
-          {/* Header with Toggle */}
           <div className="flex items-center justify-between px-4 py-3 bg-white dark:bg-[#161616] border-b border-zinc-200 dark:border-zinc-800">
             <div className="flex bg-zinc-100 dark:bg-[#1a1a1a] p-1 rounded-lg">
               <button
@@ -110,7 +125,6 @@ export default function ChatWidget() {
             </button>
           </div>
 
-          {/* Chat Mode */}
           {mode === 'chat' && (
             <>
               <div className="flex-1 overflow-y-auto p-4 space-y-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
@@ -161,7 +175,6 @@ export default function ChatWidget() {
             </>
           )}
 
-          {/* Email Mode */}
           {mode === 'email' && (
             <div className="flex-1 flex flex-col p-5 bg-[#f4f4f5] dark:bg-[#111111] overflow-y-auto">
               <div className="space-y-4 flex-1 flex flex-col">
@@ -199,7 +212,6 @@ export default function ChatWidget() {
         </div>
       )}
 
-      {/* Floating Toggle Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2.5 px-5 py-3.5 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-2xl shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 group font-medium text-sm border border-zinc-800 dark:border-zinc-200"
@@ -209,7 +221,7 @@ export default function ChatWidget() {
         ) : (
           <>
             <MessageCircle size={18} className="group-hover:-translate-y-0.5 transition-transform duration-300" />
-            <span>Chat with Kate</span>
+            <span>Chat with Kate AI</span>
           </>
         )}
       </button>
