@@ -3,6 +3,7 @@ import { MapPin, Download, Briefcase, FolderOpen, Code2, GraduationCap, User, Su
 import ReadableBlock from './ReadableBlock';
 import TimelineModal from './TimelineModal';
 import ChatWidget from './ChatWidget';
+import profileImage from '../assets/id.png';
 
 export default function Portfolio() {
   const [theme, setTheme] = useState('dark');
@@ -142,7 +143,7 @@ export default function Portfolio() {
         <header className="flex flex-col md:flex-row items-center md:items-stretch gap-8 pb-6 mt-12 md:mt-0">
           <div className="w-40 h-40 overflow-hidden shrink-0 shadow-sm rounded-lg bg-zinc-200 dark:bg-zinc-800">
             <img 
-              src="src/assets/id.png" 
+              src={profileImage} 
               alt="Profile" 
               className="w-full h-full object-cover grayscale opacity-90 transition-all duration-500"
             />
