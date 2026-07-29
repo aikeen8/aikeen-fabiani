@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import backgroundImage from '../assets/pics/dark-background.png';
+const backgroundImage = '/pics/dark-background.png';
 
 const experienceFilters = ['All', '2026', '2025', '2024'] as const;
 type ExperienceFilter = typeof experienceFilters[number];
@@ -20,7 +20,7 @@ const experienceData: ExperienceItem[] = [
     title: 'Frontend Developer Intern',
     company: 'Hiraya Technology Solutions',
     description: 'Developed interactive geospatial features for the HIMO Digital Twin platform using React, TypeScript, MapLibre, and Mapbox. Built map visualizations, custom markers, pop-ups, search functionality, and optimized rendering for a responsive user experience.',
-    imageUrl: '/src/assets/pics/hiraya.jpg', 
+    imageUrl: '/pics/hiraya.jpg',
   },
   {
     id: 'exp-2',
@@ -28,7 +28,7 @@ const experienceData: ExperienceItem[] = [
     title: 'Programmer Lead',
     company: 'STI College Fairview',
     description: 'Led the development of a full-stack online ordering and inventory management system using PHP and MySQL, implementing real-time inventory synchronization, order processing and responsive user interfaces.',
-    imageUrl: '/src/assets/pics/uni-preview.JPG', 
+    imageUrl: '/pics/uni-preview.JPG',
   }
 ];
 

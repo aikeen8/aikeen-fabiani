@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import backgroundImage from '../assets/pics/dark-background.png';
+const backgroundImage = '/pics/dark-background.png';
 import {
   projectFilters,
   projectPageData,

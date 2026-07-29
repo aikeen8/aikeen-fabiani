@@ -1,4 +1,4 @@
-import backgroundImage from '../assets/pics/dark-background.png';
+const backgroundImage = '/pics/dark-background.png';
 
 type StackPageProps = {
   isDarkMode: boolean;

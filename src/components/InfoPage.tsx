@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import backgroundImage from '../assets/pics/dark-background.png';
 import { infoPageData } from '../data/infoPageData';
+const backgroundImage = '/pics/dark-background.png';
 
 type InfoPageProps = {
   isDarkMode: boolean;

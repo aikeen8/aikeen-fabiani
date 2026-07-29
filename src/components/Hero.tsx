@@ -1,7 +1,7 @@
 import { Menu, Moon, Sun } from 'lucide-react';
 import { useState } from 'react';
 import { navigationData } from '../data/navigationData';
-import backgroundImage from '../assets/pics/dark-background.png';
+const backgroundImage = '/pics/dark-background.png';
 
 type HeroProps = {
   isDarkMode: boolean;

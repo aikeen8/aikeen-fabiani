@@ -29,7 +29,7 @@ export const projectPageData: ProjectItem[] = [
     title: 'Darwin\'s Hardware',
     category: 'School',
     tags: ['PHP', 'MySQL', 'Inventory Management'],
-    imageUrl: 'src/assets/pics/darwins.jpg',
+    imageUrl: '/pics/darwins.jpg',
     imagePosition: 'center',
   },
   {
@@ -37,7 +37,7 @@ export const projectPageData: ProjectItem[] = [
     title: 'Compo',
     category: 'Web App',
     tags: ['React', 'TypeScript', 'Supabase','PWA', 'Digital Workspace'],
-    imageUrl: 'src/assets/pics/compo.png',
+    imageUrl: '/pics/compo.png',
     imagePosition: 'left center',
   },
   {
@@ -45,7 +45,7 @@ export const projectPageData: ProjectItem[] = [
     title: 'Credibly',
     category: 'Web App',
     tags: ['React', 'TypeScript', 'MongoDB', 'Learning Platform'],
-    imageUrl: 'src/assets/pics/credibly.png',
+    imageUrl: '/pics/credibly.png',
     imagePosition: '70% center',
   },
   {
@@ -53,7 +53,7 @@ export const projectPageData: ProjectItem[] = [
     title: 'Manic Emulator Skins',
     category: 'Side Quests',
     tags: ['Emulator', 'Design'],
-    imageUrl: 'src/assets/pics/emulator.png',
+    imageUrl: '/pics/emulator.png',
     imagePosition: 'center center',
   },
 ];
