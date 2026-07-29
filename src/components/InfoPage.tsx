@@ -110,7 +110,7 @@ export default function InfoPage({ isDarkMode, onClose }: InfoPageProps) {
             }}
           >
             <img
-              src="src/assets/pics/png.JPG" // CHANGE THIS TO YOUR ACTUAL IMAGE PATH
+              src="/pics/png.JPG" // CHANGE THIS TO YOUR ACTUAL IMAGE PATH
               alt="Profile Preview"
               className={`absolute inset-0 h-full w-full object-cover ${
                 isDarkMode ? 'opacity-90' : 'opacity-80'
