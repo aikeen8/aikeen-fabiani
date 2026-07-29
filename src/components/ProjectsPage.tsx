@@ -156,7 +156,7 @@ export default function ProjectsPage({
 
         {/* Updated top position from top-[35vh] to top-[28vh] */}
         <div
-          className={`pointer-events-none absolute left-[12vw] top-[28vh] hidden w-[36vw] max-w-2xl transition-all duration-300 ease-out md:block ${
+          className={`pointer-events-none absolute left-[10vw] top-[28vh] hidden w-[36vw] max-w-2xl transition-all duration-300 ease-out md:block ${
             hoveredProject || exitingPreview 
               ? 'opacity-100' 
               : 'opacity-0'
