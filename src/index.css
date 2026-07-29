@@ -1,2 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-instrument: "Instrument Serif", serif;
+  --font-arsenica: "Arsenica", serif;
+}
+
+/* Horizontal line animation (left to right) */
+@keyframes lineConnectHorizontal {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+.animate-line-horizontal {
+  transform-origin: left;
+  animation: lineConnectHorizontal 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Vertical line animation (top to bottom) */
+@keyframes lineConnectVertical {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.animate-line-vertical {
+  transform-origin: top;
+  animation: lineConnectVertical 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes noteSlideUp {
+  0% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0deg); }
+  55% { opacity: 0.8; transform: translate3d(12%, -58%, 0) rotate(1deg); }
+  100% { opacity: 0; transform: translate3d(32%, -118%, 0) rotate(2deg); }
+}
+
+.animate-note-slide-up {
+  transform-origin: bottom left;
+  will-change: opacity, transform;
+  animation: noteSlideUp 680ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes backgroundPan {
+  0% { transform: scale(1.05) translate(-4%, -4%); }
+  50% { transform: scale(1.05) translate(4%, 4%); }
+  100% { transform: scale(1.05) translate(-4%, -4%); }
+}
+
+.animate-background-pan {
+  animation: backgroundPan 30s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* --- Base Custom Cursor Styles --- */
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(1);
+  transition: background 200ms ease, transform 240ms cubic-bezier(0.2,0.9,0.3,1), border 180ms ease, opacity 200ms ease;
+  z-index: 9999;
+  mix-blend-mode: normal;
+}
+
+/* --- Light Mode Cursor --- */
+.cursor-light {
+  background: #000000;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+.cursor-light.cursor--hover {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.9);
+  transform: translate(-50%, -50%) scale(2.2);
+  opacity: 0.95;
+}
+
+/* --- Dark Mode Cursor --- */
+.cursor-dark {
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+.cursor-dark.cursor--hover {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.95);
+  transform: translate(-50%, -50%) scale(2.2);
+  opacity: 0.95;
+}
+
+/* Hide default system cursor */
+@media (hover: hover) and (pointer: fine) {
+  body, body * { cursor: none !important; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor { display: none; }
+}
+
+@font-face {
+  font-family: "Classy Vogue";
+  src: url("./assets/fonts/Classyvogueregular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-classyvogue: "Classy Vogue", serif;
+}
